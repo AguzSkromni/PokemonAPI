@@ -15,14 +15,14 @@ import lombok.ToString;
 public class Pokemon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idPokemon;
-    String nombrePokemon;
-    String tipoPokemon;
-    Integer nivelPokemon;
+    private Integer idPokemon;
+
+    private String nombrePokemon;
+    private String tipoPokemon;
+    private Integer nivelPokemon;
 
     @ManyToOne
     @JoinColumn(name = "entrenador_id")
     @JsonBackReference
     private Entrenador entrenador;
-
 }

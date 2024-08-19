@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ESP">
+<head th:insert="~{fragments/bootstrap-header :: bootstrapHeader}">
+    <title>Listar Entrenadores</title>
+</head>
+<body>
+<th:block th:replace="~{fragments/nav :: navbar}" th:with="page='listar-entrenadores'"></th:block>
+
+<div class="container-xl">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>Listar Entrenadores</h1>
+        </div>
+
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Ciudad</th>
+                    <th>Pokemones</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="entrenador : ${entrenadores}">
+                    <td th:text="${entrenador.idEntrenador}">ID</td>
+                    <td th:text="${entrenador.nombreEntrenador}">Nombre</td>
+                    <td th:text="${entrenador.edadEntrenador}">Edad</td>
+                    <td th:text="${entrenador.ciudadEntrenador}">Ciudad</td>
+                    <td th:text="${entrenador.pokemonNames}">Pokemones</td>
+                    <td>
+                        <a th:href="@{/editar-entrenador/{id}(id=${entrenador.idEntrenador})}" class="btn btn-warning btn-sm">Editar</a>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal"
+                                th:data-id="${entrenador.idEntrenador}">Eliminar
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmación de eliminación -->
+<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eliminarModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que quieres eliminar este entrenador?
+            </div>
+            <div class="modal-footer">
+                <form id="formEliminar" method="post" action="/eliminar-entrenador">
+                    <input type="hidden" id="idEntrenador" name="id" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/bootstrap-footer :: bootstrapFooter}"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $('#eliminarModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var id = button.data('id'); // Extract info from data-* attributes
+        var modal = $(this);
+        modal.find('.modal-footer #idEntrenador').val(id);
+    });
+</script>
+</body>
+</html>

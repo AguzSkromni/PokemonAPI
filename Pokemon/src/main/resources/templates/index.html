@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ESP">
+<head th:insert="~{fragments/bootstrap-header :: bootstrapHeader}">
+    <title>Index Pokemon</title>
+</head>
+<body>
+<th:block th:replace="~{fragments/nav :: navbar}" th:with="page='home'"></th:block>
+
+<div class="container-xl">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>Index Pokémon</h1>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/bootstrap-footer :: bootstrapFooter}"></div>
+</body>
+</html>

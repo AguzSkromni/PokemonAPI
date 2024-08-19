@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:insert="~{fragments/bootstrap-header :: bootstrapHeader}">
+    <title>Búsqueda de Entrenador</title>
+</head>
+<body>
+<th:block th:replace="~{fragments/nav :: navbar}" th:with="page='busqueda-entrenador'"></th:block>
+
+<h2>Búsqueda de Entrenador</h2>
+<form th:action="@{/buscar-entrenador}" method="post">
+    <div>
+        <label for="entrenadorId">ID del Entrenador:</label>
+        <input type="number" id="entrenadorId" name="id" required />
+        <button type="submit">Buscar</button>
+    </div>
+
+    <!-- Mostrar mensaje de error si el ID no se encuentra -->
+    <div th:if="${error}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+</form>
+
+<div th:insert="~{fragments/bootstrap-footer :: bootstrapFooter}"></div>
+</body>
+</html>
