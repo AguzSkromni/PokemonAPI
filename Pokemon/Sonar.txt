@@ -1,0 +1,1 @@
+mvn clean verify sonar:sonar -Dsonar.projectKey=PokemonAPI -Dsonar.projectName='PokemonAPI' -Dsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_b360e2da979b5b6b93ef04325859544952a8b920

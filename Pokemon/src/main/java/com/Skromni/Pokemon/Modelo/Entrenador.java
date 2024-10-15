@@ -27,6 +27,8 @@ public class Entrenador {
 
     @Transient
     private String pokemonNames;
+
+    private Integer numeroPrueba;
 }
 
 
